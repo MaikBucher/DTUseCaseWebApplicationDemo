@@ -1,0 +1,19 @@
+# Node-Abhängigkeiten
+node_modules/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+.env.local
+.env.*.local
+
+.vscode/
+.idea/
+
+.DS_Store
+
+.yarn/*
+.pnp.*
