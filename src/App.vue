@@ -35,4 +35,20 @@ export default {
   padding-bottom: 1rem;
   background-color: #68A089;
 }
+
+button {
+  background-color: lightgray !important;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin: auto;
+}
+
+input {
+  margin: auto;
+  padding: 0.5rem;
+  background-color: snow !important;
+}
 </style>

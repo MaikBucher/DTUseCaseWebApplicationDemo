@@ -14,9 +14,10 @@
           placeholder="Value der Eigenschaft"
           class="inputProperties"
       />
-      <button @click="removeProperty(index)">-</button>
+      <button @click="removeProperty(index)" style="width: 40px">-</button>
     </div>
-    <button @click="addProperty">+</button>
+    <br>
+    <button @click="addProperty" style="width: 40px">+</button>
   </div>
 </template>
 

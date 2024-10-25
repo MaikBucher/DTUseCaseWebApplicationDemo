@@ -13,6 +13,7 @@
               style="margin: auto; padding: 0.5rem;"
           />
         </div>
+        <br>
         <PropertyList :properties="properties" @update-properties="updateProperties"/>
       </div>
       <button @click="nextStep" style="width: 120px; margin: auto">Weiter</button>
@@ -44,7 +45,7 @@ export default {
       };
       this.$emit('next-step');
       console.log('Product Details: ', productDetails);
-      this.$router.push({ name: 'DTDefinition', query: { productDetails: JSON.stringify(productDetails) } });
+      this.$router.push({ name: 'DTVisualization', query: { productDetails: JSON.stringify(productDetails) }});
     }
   }
 };
