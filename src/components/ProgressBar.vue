@@ -33,7 +33,7 @@ export default {
   methods: {
     nextStep() {
       if (this.currentStep >= 3) {
-        this.currentStep = 0; // Zurücksetzen auf 0, um von vorne zu beginnen
+        this.currentStep = 0;
       } else {
         this.currentStep++;
       }
@@ -126,7 +126,7 @@ $white: #DBF1FF;
   text-transform: uppercase;
   color: $gray;
   position: absolute;
-  padding-top: 2.5em; // Adjusted to give more space below the icon
+  padding-top: 2.5em;
   width: 100%;
   transition: all .25s ease-out;
 

@@ -45,11 +45,11 @@ export default {
   methods: {
     addProperty() {
       this.localProperties.push({ name: '', value: '' });
-      this.$emit('update-properties', this.localProperties); // Emits the updated properties to the parent
+      this.$emit('update-properties', this.localProperties);
     },
     removeProperty(index) {
       this.localProperties.splice(index, 1);
-      this.$emit('update-properties', this.localProperties); // Emits the updated properties to the parent
+      this.$emit('update-properties', this.localProperties);
     }
   }
 };
