@@ -19,36 +19,36 @@
 <script>
 export default {
   name: 'DTVisual',
-  data(){
+  data() {
     return {
-      productDetails: {
-        name: '',
-        properties: []
-      }
-   }
+      productDetails: {},
+      jsonView: ''
+    };
   },
   created() {
     if (this.$route.query.productDetails) {
-      this.productDetails = JSON.parse(this.$route.query.productDetails);
+      try {
+        this.productDetails = JSON.parse(this.$route.query.productDetails);
+      } catch (error) {
+        console.error('Error parsing productDetails:', error);
+      }
       this.showJson();
     }
-},
+  },
   methods: {
     nextStep() {
-      const productDetails = {
-        name: this.productName,
-        properties: this.properties
-      };
-      this.$emit('next-step');
+      const productDetails = this.productDetails;
       console.log('Product Details: ', productDetails);
-      this.$router.push({ name: 'DTVisualization', query: { productDetails: JSON.stringify(productDetails) }});
+      this.$router.push({
+        name: 'DTSubmodel',
+        query: { productDetails: JSON.stringify(productDetails) }
+      });
     },
     showJson() {
-      const jsonData = { name: this.productDetails.name };
-      this.jsonView = JSON.stringify(jsonData, null, 2);
+      this.jsonView = JSON.stringify(this.productDetails, null, 2);
+    }
   }
-}
-}
+};
 </script>
 <style scoped>
 @keyframes fadeIn {

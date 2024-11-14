@@ -4,17 +4,21 @@
       <!-- Progress bar steps -->
       <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 0, 'is-complete': currentStep > 0 }">
         <div class="ProgressBar-icon"></div>
-        <span class="ProgressBar-stepLabel">Produkt definieren</span>
+        <span class="ProgressBar-stepLabel">Einführung</span>
       </li>
       <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 1, 'is-complete': currentStep > 1 }">
         <div class="ProgressBar-icon"></div>
-        <span class="ProgressBar-stepLabel">DT erstellen</span>
+        <span class="ProgressBar-stepLabel">Produkt erstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 2, 'is-complete': currentStep > 2 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 2, 'is-complete': currentStep > 1 }">
+        <div class="ProgressBar-icon"></div>
+        <span class="ProgressBar-stepLabel">DT & Aspekt erstellen</span>
+      </li>
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 3, 'is-complete': currentStep > 2 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Bereitstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 3, 'is-complete': currentStep > 3 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 5, 'is-complete': currentStep > 4 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Abrufen</span>
       </li>
@@ -32,7 +36,7 @@ export default {
   },
   methods: {
     nextStep() {
-      if (this.currentStep >= 3) {
+      if (this.currentStep >= 4) {
         this.currentStep = 0;
       } else {
         this.currentStep++;

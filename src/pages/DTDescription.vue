@@ -20,12 +20,12 @@
     </div>
   </div>
 </template>
-<script>
+<script scoped>
 import PropertyList from "@/components/PropertyList.vue";
 
 export default {
   name: 'DTDescription',
-  components: {PropertyList},
+  components: { PropertyList },
   data() {
     return {
       productName: '',
@@ -40,12 +40,14 @@ export default {
     },
     nextStep() {
       const productDetails = {
-        name: this.productName,
-        properties: this.properties
+        name: this.productName
       };
+      this.properties.forEach(prop => {
+        productDetails[prop.name] = prop.value;
+      });
       this.$emit('next-step');
       console.log('Product Details: ', productDetails);
-      this.$router.push({ name: 'DTVisualization', query: { productDetails: JSON.stringify(productDetails) }});
+      this.$router.push({ name: 'DTVisualization', query: { productDetails: JSON.stringify(productDetails) } });
     }
   }
 };

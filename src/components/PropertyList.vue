@@ -7,17 +7,16 @@
           placeholder="Name der Eigenschaft"
           class="inputProperties"
       />
-      <p>:</p>
+      <p style="font-weight: bold; font-size: 20px">:</p>
       <input
           type="text"
           v-model="property.value"
-          placeholder="Value der Eigenschaft"
+          placeholder="Wert der Eigenschaft"
           class="inputProperties"
       />
       <button @click="removeProperty(index)" style="width: 40px">-</button>
     </div>
-    <br>
-    <button @click="addProperty" style="width: 40px">+</button>
+    <button @click="addProperty" style="width: 40px; margin-left: 0px">+</button>
   </div>
 </template>
 
@@ -62,11 +61,11 @@ export default {
   flex-direction: row;
   align-items: center;
   margin: auto;
+  padding-bottom: 1rem;
 }
 
 .inputProperties {
   margin: auto;
   width: 200px;
-  padding: 0.5rem;
 }
 </style>
