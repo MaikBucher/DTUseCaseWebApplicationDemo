@@ -1,4 +1,5 @@
 <template>
+  <div style="width: 98%; background-color: black; height: 1px; margin: auto"/>
   <div class="diagram-container">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid meet">
 
@@ -62,7 +63,6 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: #b3f3da;
   padding: 20px;
 }
 
