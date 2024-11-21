@@ -1,47 +1,84 @@
+
 <template>
-  <div style="width: 98%; background-color: black; height: 1px; margin: auto"/>
+  <br>
+  <div style="width: 98%; background-color: black; height: 1px; margin: auto"></div>
   <div class="diagram-container">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid meet">
+    <div class="factory-section" :class="{ highlight: highlight === 'leftFactory' }">
+      <div class="factory-header">
+        <img :src="require('@/assets/factory.png')" alt="Factory" class="factory-icon" />
+        <p>Unser System</p>
+      </div>
+      <div class="factory-body">
+        <div class="digital-twins">
+          <div class="icon-container">
+            <img :src="require('@/assets/digital_twin.png')" class="twin-icon" />
+            <p>Digital Twin</p>
+          </div>
+        </div>
+        <div class="servers">
+          <div class="icon-container">
+            <img :src="require('@/assets/server.png')" class="server-icon"  alt="Digital Twin Registry" />
+            <p>Digital Twin Registry</p>
+          </div>
+          <div class="icon-container">
+            <img :src="require('@/assets/server.png')" class="server-icon" />
+            <p>Submodel Server</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <g :class="{ highlight: highlight === 'leftFactory' }">
-        <rect x="50" y="100" width="250" height="200" fill="none" stroke="black" stroke-width="2" />
-        <image :href="require('@/assets/factory.png')" x="50" y="70" width="50" height="25" />
+    <div class="arrow">
+      <div class="arrowhead"></div>
+      <div class="line"></div>
+    </div>
 
-        <image :href="require('@/assets/server.png')" x="80" y="130" width="40" height="40" />
-        <image :href="require('@/assets/server.png')" x="80" y="190" width="40" height="40" />
+    <div class="dataspace-section" :class="{ highlight: highlight === 'dataspace' }">
+      <div class="dataspace-header">
+        <h3>Catena-X Dataspace</h3>
+      </div>
+      <div class="dataspace-body">
+        <div class="icon-container">
+          <img :src="require('@/assets/server.png')" class="server-icon" />
+          <p>Identity Service</p>
+        </div>
 
-        <image :href="require('@/assets/box.png')" x="140" y="120" width="50" height="50" />
-        <image :href="require('@/assets/digital_twin.png')" x="210" y="120" width="50" height="50" />
-      </g>
+        <div class="icon-container">
+          <img :src="require('@/assets/server.png')" class="server-icon" />
+          <p>Discovery Service</p>
+        </div>
+      </div>
+    </div>
 
-      <line x1="300" y1="200" x2="700" y2="200" stroke="black" stroke-width="2" />
-      <polygon points="700,190 720,200 700,210" fill="black" />
+    <div class="arrow">
+      <div class="line"></div>
+      <div class="arrowhead_right"></div>
+    </div>
 
-
-      <g :class="{ highlight: highlight === 'dataspace' }">
-        <rect x="730" y="100" width="300" height="200" fill="none" stroke="black" stroke-width="2" />
-        <text x="770" y="90" font-size="16" fill="black">Catena-X Dataspace</text>
-
-        <image :href="require('@/assets/server.png')" x="760" y="130" width="40" height="40" />
-        <image :href="require('@/assets/server.png')" x="830" y="130" width="40" height="40" />
-        <image :href="require('@/assets/server.png')" x="760" y="190" width="40" height="40" />
-        <image :href="require('@/assets/server.png')" x="830" y="190" width="40" height="40" />
-      </g>
-
-      <line x1="1030" y1="200" x2="1300" y2="200" stroke="black" stroke-width="2" />
-      <polygon points="1300,190 1320,200 1300,210" fill="black" />
-
-      <g :class="{ highlight: highlight === 'rightFactory' }">
-        <rect x="1320" y="100" width="250" height="200" fill="none" stroke="black" stroke-width="2" />
-        <image :href="require('@/assets/factory.png')" x="1320" y="70" width="50" height="25" />
-
-        <image :href="require('@/assets/server.png')" x="1350" y="130" width="40" height="40" />
-        <image :href="require('@/assets/server.png')" x="1350" y="190" width="40" height="40" />
-
-        <image :href="require('@/assets/digital_twin.png')" x="1410" y="120" width="50" height="50" />
-        <image :href="require('@/assets/box.png')" x="1480" y="120" width="50" height="50" />
-      </g>
-    </svg>
+    <div class="factory-section" :class="{ highlight: highlight === 'rightFactory' }">
+      <div class="factory-header">
+        <img :src="require('@/assets/factory.png')" alt="Factory" class="factory-icon" />
+        <p>Kunde</p>
+      </div>
+      <div class="factory-body">
+        <div class="servers">
+          <div class="icon-container">
+            <img :src="require('@/assets/server.png')" class="server-icon" />
+            <p>Submodel Server</p>
+          </div>
+          <div class="icon-container">
+            <img :src="require('@/assets/server.png')" class="server-icon" />
+            <p>Digital Twin Registry</p>
+          </div>
+        </div>
+        <div class="digital-twins">
+          <div class="icon-container">
+            <img :src="require('@/assets/digital_twin.png')" class="product-icon" />
+            <p>Digital Twin</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -58,22 +95,101 @@ export default {
 </script>
 
 <style scoped>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .diagram-container {
+  margin: auto;
   display: flex;
+  width: 100%;
+  padding: 30px;
   justify-content: center;
+}
+
+.factory-section, .dataspace-section {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
+  background-color: white;
+  border: 2px solid black;
   padding: 20px;
+  min-width: 300px;
+  position: relative;
 }
 
-svg {
-  width: 100%;
-  max-width: 1400px;
+.factory-header, .dataspace-header {
+  position: absolute;
+  top: 0px;
+  padding: 0 5px;
+}
+
+.factory-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.dataspace-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.factory-icon, .server-icon, .product-icon, .twin-icon {
+  width: 50px;
   height: auto;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin: 10px 0;
 }
 
-.highlight {
-  stroke: red !important;
-  outline: 3px solid yellow;
+.digital-twins, .servers {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.arrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.line {
+  width: 200px;
+  height: 2px;
+  background-color: black;
+}
+
+.arrowhead {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid black;
+}
+
+.arrowhead_right {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid black;
 }
 </style>

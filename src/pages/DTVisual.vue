@@ -10,10 +10,6 @@
       <img :src="require('@/assets/digitalTwin.png')" alt="Digital Twin Image" class="fade-in third">
     </div>
   </div>
-  <div class="dt_jsonView fade-in fourth">
-    <p>Digital Twin als JSON:</p>
-    <textarea v-model="jsonView" readonly></textarea>
-  </div>
   <button @click="nextStep" style="width: 120px; margin: auto">Weiter</button>
 </template>
 <script>
@@ -25,16 +21,6 @@ export default {
       jsonView: ''
     };
   },
-  created() {
-    if (this.$route.query.productDetails) {
-      try {
-        this.productDetails = JSON.parse(this.$route.query.productDetails);
-      } catch (error) {
-        console.error('Error parsing productDetails:', error);
-      }
-      this.showJson();
-    }
-  },
   methods: {
     nextStep() {
       const productDetails = this.productDetails;
@@ -44,9 +30,6 @@ export default {
         query: { productDetails: JSON.stringify(productDetails) }
       });
     },
-    showJson() {
-      this.jsonView = JSON.stringify(this.productDetails, null, 2);
-    }
   }
 };
 </script>

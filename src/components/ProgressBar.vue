@@ -10,15 +10,19 @@
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Produkt erstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 2, 'is-complete': currentStep > 1 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 2, 'is-complete': currentStep > 2 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">DT & Aspekt erstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 3, 'is-complete': currentStep > 2 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 3, 'is-complete': currentStep > 3 }">
+        <div class="ProgressBar-icon"></div>
+        <span class="ProgressBar-stepLabel">Speicherung</span>
+      </li>
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 4, 'is-complete': currentStep > 4 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Bereitstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 5, 'is-complete': currentStep > 4 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 5, 'is-complete': currentStep > 5 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Abrufen</span>
       </li>

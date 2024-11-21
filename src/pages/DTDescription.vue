@@ -45,10 +45,8 @@ export default {
       this.properties.forEach(prop => {
         productDetails[prop.name] = prop.value;
       });
-      this.$emit('next-step');
-      console.log('Product Details: ', productDetails);
-      this.$router.push({ name: 'DTVisualization', query: { productDetails: JSON.stringify(productDetails) } });
-    }
+      localStorage.setItem('productDetails', JSON.stringify(productDetails));
+      this.$router.push({ name: 'VideoPage',  params: { tag: "CatenaX" } });    }
   }
 };
 </script>

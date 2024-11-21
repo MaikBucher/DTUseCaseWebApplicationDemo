@@ -30,7 +30,7 @@ export default {
   name: 'DTDefinition',
   data() {
     return {
-      productDetails: {},
+      productDetails: null,
       jsonView: '',
       addedProperties: [],
       submodel: {
@@ -40,6 +40,11 @@ export default {
     };
   },
   created() {
+    const storedProduct = localStorage.getItem('productDetails');
+    if (storedProduct) {
+      this.productDetails = JSON.parse(storedProduct);
+      console.log('Product Details:', this.productDetails);
+    }
     if (this.$route.query.productDetails) {
       try {
         this.productDetails = JSON.parse(this.$route.query.productDetails);
@@ -74,11 +79,8 @@ export default {
       this.jsonView = JSON.stringify(jsonData, null, 2);
     },
     nextStep() {
-      const productDetails = this.productDetails;
-      this.$emit('next-step');
-      console.log('Product Details: ', productDetails);
-      this.$router.push({ name: 'DTPublish', query: { productDetails: JSON.stringify(productDetails) } });
-    }
+      localStorage.setItem('submodel', JSON.stringify(this.submodel));
+      this.$router.push({ name: 'VideoPage',  params: { tag: "Saving" } });    }
   },
   watch: {
     addedProperties: {

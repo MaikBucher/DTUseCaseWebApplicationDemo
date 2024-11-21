@@ -21,8 +21,7 @@ export default {
   },
   methods: {
     login() {
-      console.log('Login with user ID: ' + this.userId);
-      this.$router.push({ name: 'DTHistory' });
+      this.$router.push({ name: 'VideoPage',  params: { tag: "DigitalTwins" } });
     },
   },
 };

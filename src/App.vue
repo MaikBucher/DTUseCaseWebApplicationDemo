@@ -6,17 +6,31 @@
     <br>
     <router-view @next-step="nextProgressBarStep"></router-view>
     <br>
-    <VisualizationOverview />
+    <VisualizationOverview v-if="showVisualization" />
   </div>
 </template>
 
 <script>
 import ProgressBar from "@/components/ProgressBar.vue";
 import VisualizationOverview from "@/components/Visualization.vue";
+import router from './router';
 
 export default {
   name: 'App',
-  components: {VisualizationOverview, ProgressBar },
+  components: { VisualizationOverview, ProgressBar },
+  data() {
+    return {
+      showVisualization: true,
+    };
+  },
+  created() {
+    router.beforeEach((to, from, next) => {
+      if (to.meta.showVisualization !== undefined) {
+        this.showVisualization = to.meta.showVisualization;
+      }
+      next();
+    });
+  },
   methods: {
     nextProgressBarStep() {
       this.$refs.progressBar.nextStep();
