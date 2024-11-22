@@ -9,7 +9,7 @@ import VideoPage from "@/pages/VideoPage.vue";
 
 const routes = [
     { path: '/', component: StartPage, name: 'StartPage', meta: { showVisualization: false } },
-    { path: '/dtdescription', component: DTDescription, name: 'DTDescription', meta: { showVisualization: false } },
+    { path: '/dtdescription', component: DTDescription, name: 'DTDescription', meta: { showVisualization: true } },
     { path: '/dtsubmodel', component: DTSubmodel, name: 'DTSubmodel', meta: { showVisualization: true } },
     { path: '/dtpublish', component: DTPublish, name: 'DTPublish', meta: { showVisualization: true } },
     { path: '/dthistory', component: DTHistory, name: 'DTHistory', meta: { showVisualization: false } },

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Video Seite</h1>
+  <div class="page-container">
+    <h1>{{ videoTitle }}</h1>
     <div v-if="videoUrl">
       <iframe
           width="560"
@@ -29,7 +29,8 @@ export default {
         Saving: { url: 'https://www.youtube.com/embed/zg6eqUZoVmg?si=OSC4Uj_tJcgIkTS7', nextPage: 'DTPublish' }
       },
       videoUrl: '',
-      nextPage: ''
+      nextPage: '',
+      videoTitle: ''
     };
   },
   computed: {
@@ -47,11 +48,18 @@ export default {
     console.log('Tag:', this.tag);
     if (this.videos[this.tag]) {
       this.videoUrl = this.videos[this.tag].url;
+      this.videoTitle = this.tag;
       this.nextPage = this.videos[this.tag].nextPage;
     }
   }
 };
 </script>
-
 <style>
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
 </style>
