@@ -22,6 +22,6 @@ app.use(router).use(vuetify);
 
 app.mount('#app');
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
     appInsights.trackPageView({ name: to.name, uri: to.fullPath });
 });
