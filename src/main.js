@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import appInsights from './appInsights';
+import appInsights from './azureAppInsights';
 
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
@@ -22,6 +22,6 @@ app.use(router).use(vuetify);
 
 app.mount('#app');
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
     appInsights.trackPageView({ name: to.name, uri: to.fullPath });
 });
