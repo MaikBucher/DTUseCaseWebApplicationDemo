@@ -80,7 +80,7 @@ export default {
     },
     nextStep() {
       localStorage.setItem('submodel', JSON.stringify(this.submodel));
-      this.$router.push({ name: 'VideoPage',  params: { tag: "Saving" } });    }
+      this.$router.push({ name: 'VideoPage',  params: { tag: "Storage" } });    }
   },
   watch: {
     addedProperties: {

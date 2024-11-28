@@ -6,7 +6,6 @@
           width="560"
           height="315"
           :src="embedUrl"
-          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
       ></iframe>
@@ -26,7 +25,8 @@ export default {
       videos: {
         DigitalTwins: { url: 'https://www.youtube.com/embed/Rxokn_LLa4k?si=zrczsbRlcvvhR1Sv', nextPage: 'DTDescription' },
         CatenaX: { url: 'https://www.youtube.com/embed/_OG15eOPBPo?si=LHJtAAgFd0g86Wvi', nextPage: 'DTSubmodel' },
-        Saving: { url: 'https://www.youtube.com/embed/zg6eqUZoVmg?si=OSC4Uj_tJcgIkTS7', nextPage: 'DTPublish' }
+        Storage: { url: 'https://www.youtube.com/embed/zg6eqUZoVmg?si=OSC4Uj_tJcgIkTS7', nextPage: 'DTStorage' },
+        Publish: { url: 'https://www.youtube.com/embed/yj_D41BveKc?si=cF4OtENDq84RFS_0', nextPage: 'DTPublish' }
       },
       videoUrl: '',
       nextPage: '',

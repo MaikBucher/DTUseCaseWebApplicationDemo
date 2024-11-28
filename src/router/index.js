@@ -6,6 +6,7 @@ import DTPublish from "@/pages/DTPublish.vue";
 import DTHistory from "@/pages/DTHistory.vue";
 import DTVisual from "@/pages/DTVisual.vue";
 import VideoPage from "@/pages/VideoPage.vue";
+import DTStorage from "@/pages/DTStorage.vue";
 
 const routes = [
     { path: '/', component: StartPage, name: 'StartPage', meta: { showVisualization: false } },
@@ -14,7 +15,8 @@ const routes = [
     { path: '/dtpublish', component: DTPublish, name: 'DTPublish', meta: { showVisualization: true } },
     { path: '/dthistory', component: DTHistory, name: 'DTHistory', meta: { showVisualization: false } },
     { path: '/dtvisualization', component: DTVisual, name: 'DTVisualization', meta: { showVisualization: true } },
-    { path: '/video', component: VideoPage, name: 'VideoPage', meta: { showVisualization: false }, props: true }
+    { path: '/video', component: VideoPage, name: 'VideoPage', meta: { showVisualization: false }, props: true },
+    { path:'/dtstorage', component: DTStorage, name: 'DTStorage', meta: { showVisualization: true } }
 ];
 
 const router = createRouter({
