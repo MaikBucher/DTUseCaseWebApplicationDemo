@@ -6,6 +6,7 @@
     <br>
     <div class="dt-publish">
       <div class="calls">
+        <p class="headline">Verfügbare Calls</p>
         <div
             v-for="(call, index) in calls"
             :key="index"
@@ -18,6 +19,7 @@
         </div>
       </div>
       <div class="selected-calls">
+        <p class="headline">Ausgewählte Calls</p>
         <div v-for="(call, index) in addedCalls" :key="call.name" class="numbered-call">
           <span class="call-number">{{ index + 1 }}.</span>
           <div class="call-item">
@@ -107,13 +109,21 @@ export default {
 .dt-publish {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+}
+
+.headline {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
 }
 
 .calls,
 .selected-calls {
-  width: 50%;
+  width: 40%;
   padding: 1rem;
   background-color: #68a089;
+  min-height: 300px;
 }
 
 .call-item {
@@ -123,7 +133,7 @@ export default {
   flex-direction: row;
   cursor: pointer;
   padding: 0.5rem;
-  width: calc(100% - 1rem);
+  width: calc(100%);
 }
 
 .call-item.added {
@@ -142,6 +152,7 @@ export default {
   flex-shrink: 0;
   margin-right: 0.5rem;
   font-weight: bold;
+  color: white;
 }
 
 .call-item:hover {

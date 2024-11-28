@@ -35,7 +35,7 @@ h1 {
   font-size: 24px;
 }
 
-p {
+.p {
   font-size: 16px;
   color: #333;
   max-width: 600px;
@@ -43,6 +43,8 @@ p {
 }
 
 button {
+  background-color: #4caf50;
+  color: white;
   font-size: 16px;
   padding: 10px 20px;
   border: none;

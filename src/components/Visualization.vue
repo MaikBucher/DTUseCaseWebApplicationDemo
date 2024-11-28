@@ -5,7 +5,6 @@
   <div class="diagram-container">
     <div class="factory-section" :class="{ highlight: highlight === 'leftFactory' }">
       <div class="factory-header">
-        <img :src="require('@/assets/factory.png')" alt="Factory" class="factory-icon" />
         <p>Unser System</p>
       </div>
       <div class="factory-body">
@@ -29,7 +28,9 @@
     </div>
 
     <div class="arrow">
-      <div class="arrowhead"></div>
+      <div class="arrowhead">
+        <span class="arrow-text">EDC</span>
+      </div>
       <div class="line"></div>
     </div>
 
@@ -52,29 +53,20 @@
 
     <div class="arrow">
       <div class="line"></div>
-      <div class="arrowhead_right"></div>
+      <div class="arrowhead_right">
+        <span class="arrow-text">EDC</span>
+      </div>
     </div>
 
     <div class="factory-section" :class="{ highlight: highlight === 'rightFactory' }">
       <div class="factory-header">
-        <img :src="require('@/assets/factory.png')" alt="Factory" class="factory-icon" />
         <p>Kunde</p>
       </div>
       <div class="factory-body">
         <div class="servers">
           <div class="icon-container">
             <img :src="require('@/assets/server.png')" class="server-icon" />
-            <p>Submodel Server</p>
-          </div>
-          <div class="icon-container">
-            <img :src="require('@/assets/server.png')" class="server-icon" />
-            <p>Digital Twin Registry</p>
-          </div>
-        </div>
-        <div class="digital-twins">
-          <div class="icon-container">
-            <img :src="require('@/assets/digital_twin.png')" class="product-icon" />
-            <p>Digital Twin</p>
+            <p>Externes System</p>
           </div>
         </div>
       </div>
@@ -123,8 +115,10 @@ body, html {
 
 .factory-header, .dataspace-header {
   position: absolute;
-  top: 0px;
+  top: 10px;
   padding: 0 5px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .factory-body {
@@ -178,18 +172,34 @@ body, html {
 }
 
 .arrowhead {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 0;
   height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-left: 20px solid black;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 40px solid black;
 }
 
 .arrowhead_right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 0;
   height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid black;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 40px solid black;
+}
+
+.arrow-text {
+  position: absolute;
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  transform: translate(10%, -100%);
 }
 </style>

@@ -52,7 +52,6 @@ export default {
 </script>
 <style lang="scss">
 .dt-description {
-  background-color: #4EF4AF40;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -78,7 +77,7 @@ export default {
 .product {
   padding: 0.5rem;
   margin: auto;
-  width: 95%;
+  width: 60%;
   background-color: #68A089;
 }
 

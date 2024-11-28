@@ -1,12 +1,7 @@
 <template>
   <div class="start-page">
     <h1>Digital Twin Use Case im Catena-X System</h1>
-    <p>Herzlich Willkommen bei diesem Workshop Ihr werdet durch ein Reihe von Aufgaben durchgeleitet. Bei vielen musst du selber zum Ziel kommen. Daher gut aufpassen und die Informatione abspeichern</p>
-    <input
-        type="text"
-        v-model="userId"
-        placeholder="User ID"
-    />
+    <p style="width: 50%; margin: auto">Herzlich Willkommen bei diesem Workshop Ihr werdet durch ein Reihe von Aufgaben durchgeleitet. Bei vielen musst du selber zum Ziel kommen. Daher gut aufpassen und die Informationen abspeichern</p>
     <button @click="login">Start</button>
   </div>
 </template>
@@ -31,6 +26,6 @@ export default {
 .start-page {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 4rem;
 }
 </style>

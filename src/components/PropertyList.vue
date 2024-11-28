@@ -59,9 +59,9 @@ export default {
 .product__properties {
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin: auto;
   padding-bottom: 1rem;
+  justify-content: center;
 }
 
 .inputProperties {

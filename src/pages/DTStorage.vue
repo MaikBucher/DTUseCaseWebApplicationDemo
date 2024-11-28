@@ -5,7 +5,7 @@
   <div class="drag-drop-page">
     <div class="container">
       <div class="source">
-        <h2>Draggable Items</h2>
+        <h2>Verfügbare Komponenten</h2>
         <div class="items">
           <div
               v-for="item in sourceItems"
@@ -170,7 +170,7 @@ export default {
   flex-direction: column;
   gap: 10px;
   width: 200px;
-}
+margin: auto}
 
 .zones {
   display: flex;
@@ -187,7 +187,7 @@ export default {
 }
 
 .dropzone {
-  min-height: 100px;
+  min-height: 150px;
   background: #e8f5e9;
   padding: 10px;
   border: 2px dashed #4caf50;
@@ -207,6 +207,7 @@ export default {
   padding: 10px;
   border-radius: 4px;
   cursor: grab;
+  margin: auto;
 }
 
 .draggable img,

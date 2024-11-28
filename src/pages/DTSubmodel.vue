@@ -6,7 +6,7 @@
   <br>
   <div class="dt-definition">
     <div class="product__properties">
-      <p>Name des Produkts: {{ productDetails.name }}</p>
+      <p class="product_name">Name des Produkts: {{ productDetails.name }}</p>
       <div v-for="(value, key) in filteredProperties" :key="key" class="property__item" :class="{ added: addedProperties.includes(key) }" @click="togglePropertyInJson(key, value)">
         <p>{{ key }}: {{ value }}</p>
       </div>
@@ -98,6 +98,7 @@ export default {
   display: flex;
   gap: 1rem;
   flex-direction: row;
+  justify-content: center;
 }
 
 .product__properties {
@@ -105,7 +106,12 @@ export default {
   flex-direction: column;
   padding: 1rem;
   background-color: #68A089;
-  width: 50%;
+  width: 30%;
+}
+.product_name {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
 }
 
 .property__item {
@@ -127,7 +133,7 @@ export default {
 .dt_submodel {
   background-color: #68A089;
 
-  width: 50%;
+  width: 30%;
   padding: 1rem;
 }
 

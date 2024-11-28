@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="infoText">
-      <p>"Nun "</p>
+      <p>Jetzt musst du die Calls zum Abrufen eines Assets in die richtige Reihenfolge bringen. <br> Tipp: Schau dir die Calls genau an.</p>
     </div>
     <br>
     <div class="dt-publish">
       <div class="calls">
+        <p class="headline">Verfügbare Calls</p>
         <div
             v-for="(call, index) in calls"
             :key="index"
@@ -18,6 +19,7 @@
         </div>
       </div>
       <div class="selected-calls">
+        <p class="headline">Ausgewählte Calls</p>
         <div v-for="(call, index) in addedCalls" :key="call.name" class="numbered-call">
           <span class="call-number">{{ index + 1 }}.</span>
           <div class="call-item">
@@ -112,13 +114,21 @@ export default {
 .dt-publish {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+}
+
+.headline {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
 }
 
 .calls,
 .selected-calls {
-  width: 50%;
+  width: 40%;
   padding: 1rem;
   background-color: #68a089;
+  min-height: 350px;
 }
 
 .call-item {
@@ -147,6 +157,7 @@ export default {
   flex-shrink: 0;
   margin-right: 0.5rem;
   font-weight: bold;
+  color: white;
 }
 
 .call-item:hover {
