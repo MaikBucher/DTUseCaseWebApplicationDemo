@@ -142,7 +142,6 @@ export default {
   padding: 0.5rem;
   width: 60%;
   background-color: #68A089;
-  font-weight: bold;
   color: #ffffff;
   font-size: 18px;
 }

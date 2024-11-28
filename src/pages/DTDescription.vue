@@ -68,9 +68,11 @@ export default {
 
 .infoText {
   padding: 0.5rem;
-  margin: auto;
-  width: 95%;
+  width: 60%;
   background-color: #68A089;
+  color: #ffffff;
+  font-size: 18px;
+  margin: auto;
 }
 
 .product {

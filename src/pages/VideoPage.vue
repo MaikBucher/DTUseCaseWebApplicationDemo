@@ -26,7 +26,8 @@ export default {
         DigitalTwins: { url: 'https://www.youtube.com/embed/Rxokn_LLa4k?si=zrczsbRlcvvhR1Sv', nextPage: 'DTDescription' },
         CatenaX: { url: 'https://www.youtube.com/embed/_OG15eOPBPo?si=LHJtAAgFd0g86Wvi', nextPage: 'DTSubmodel' },
         Storage: { url: 'https://www.youtube.com/embed/zg6eqUZoVmg?si=OSC4Uj_tJcgIkTS7', nextPage: 'DTStorage' },
-        Publish: { url: 'https://www.youtube.com/embed/yj_D41BveKc?si=cF4OtENDq84RFS_0', nextPage: 'DTPublish' }
+        Publish: { url: 'https://www.youtube.com/embed/yj_D41BveKc?si=cF4OtENDq84RFS_0', nextPage: 'DTPublish' },
+        Access: { url: 'https://www.youtube.com/embed/ZDCy3u4pOtQ?si=BiOzebWeBQDmMlHj', nextPage: 'DTAccess' }
       },
       videoUrl: '',
       nextPage: '',

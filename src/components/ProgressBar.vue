@@ -12,7 +12,7 @@
       </li>
       <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 2, 'is-complete': currentStep > 2 }">
         <div class="ProgressBar-icon"></div>
-        <span class="ProgressBar-stepLabel">DT & Aspekt erstellen</span>
+        <span class="ProgressBar-stepLabel">DT & Submodel</span>
       </li>
       <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 3, 'is-complete': currentStep > 3 }">
         <div class="ProgressBar-icon"></div>
@@ -25,6 +25,10 @@
       <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 5, 'is-complete': currentStep > 5 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Abrufen</span>
+      </li>
+      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 6, 'is-complete': currentStep > 6 }">
+        <div class="ProgressBar-icon"></div>
+        <span class="ProgressBar-stepLabel">Fragebogen</span>
       </li>
     </ol>
   </div>
@@ -40,7 +44,7 @@ export default {
   },
   methods: {
     nextStep() {
-      if (this.currentStep >= 4) {
+      if (this.currentStep >= 6) {
         this.currentStep = 0;
       } else {
         this.currentStep++;

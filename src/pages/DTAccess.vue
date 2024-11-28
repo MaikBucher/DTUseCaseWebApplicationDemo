@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="infoText">
-      <p>Nun können wir unseren Digital Twin bereitstellen. Dafür müssen wir mit unserem EDC kommunizieren. Auf der linken Seite siehst du die API Calls die wir haben um mit dem EDC zu kommunizieren. Finde nun heraus in welcher Reihenfolge die Calls gemacht werden müssen, um dein Digital Twin bereitzustellen. Tipp: Hovere übere die Calls um zu sehen, was diese tun.</p>
+      <p>"Nun "</p>
     </div>
     <br>
     <div class="dt-publish">
@@ -35,33 +35,38 @@
 
 <script>
 export default {
-  name: 'DTPublish',
+  name: 'DTAccess',
   data() {
     return {
       calls: [
         {
-          name: "Add Asset",
-          tooltip: "Fügt ein neues Asset zum Projekt hinzu. Wie zum Beispiel ein Digital Twin."
+          name: "Request Catalog",
+          tooltip: "Fordert den Katalog an, um zu sehen welche Assets verfügbar sind, die man anfragen kann."
         },
         {
-          name: "Create Contract Definition",
-          tooltip: "Definiert einen neuen Vertrag für das Projekt. Verknüpft Access Policy und Contract Policy miteinander."
+          name: "Start Data Transfer",
+          tooltip: "Startet den Datentransfer, um die Daten zu übertragen. Wie die Daten übertragen werden, wird  von dem Inhaber-EDC bestimmt."
         },
         {
-          name: "Create Access Policy",
-          tooltip: "Erstellt Zugriffsregeln für die Assets. Dort wird festgelegt, wer auf welche Daten zugreifen darf."
+          name: "Get Data",
+          tooltip: "Holt die Daten vom Inhaber-EDC ab. Die Daten werden in einem Format übertragen, das der Inhaber-EDC bestimmt."
         },
         {
-          name: "Create Contract Policy",
-          tooltip: "Erstellt Richtlinien, die mit dem Vertrag verknüpft sind. Dort wird festgelegt, wer welche Daten verarbeiten darf."
+          name: "Contract Negotiation",
+          tooltip: "Inhaber-EDC und Nutzer-EDC verhandeln über die Vertragsbedingungen. Dort wird festgelegt, wer welche Daten verarbeiten darf."
+        },
+        {
+          name: "See Contract Status",
+          tooltip: "Dadurch kann der Nutzer-EDC sehen, ob der Vertrag bereits verhandelt wurde oder noch verhandelt wird."
         }
       ],
       addedCalls: [],
       correctOrder: [
-        "Add Asset",
-        "Create Access Policy",
-        "Create Contract Policy",
-        "Create Contract Definition"
+        "Request Catalog",
+        "Contract Negotiation",
+        "See Contract Status",
+        "Start Data Transfer",
+        "Get Data"
       ],
       currentStep: 0
     };
@@ -92,7 +97,7 @@ export default {
         const addedCallNames = this.addedCalls.map(call => call.name);
         if (JSON.stringify(addedCallNames) === JSON.stringify(this.correctOrder)) {
           if (window.confirm("Die Calls wurden in der korrekten Reihenfolge gemacht. Möchtest du zum nächsten Thema?")) {
-            this.$router.push({ name: 'VideoPage', params: { tag: "Access" } });
+            this.$router.push({ name: 'SurveyPage'});
           }
         } else {
           alert("Die Calls sind nicht in der korrekten Reihenfolge. Versuche es nochmal.");
