@@ -110,12 +110,10 @@ export default {
         const correctItems = this.correctMapping[zone.id];
         const zoneItems = zone.items.map((item) => item.label);
 
-        // Prüfe, ob alle erwarteten Items in der Zone sind
         const missingItems = correctItems.filter(
             (item) => !zoneItems.includes(item)
         );
 
-        // Prüfe, ob unerwartete Items in der Zone sind
         const extraItems = zoneItems.filter(
             (item) => !correctItems.includes(item)
         );
@@ -154,7 +152,7 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Horizontal zentrieren */
+  justify-content: center;
   gap: 20px;
 }
 

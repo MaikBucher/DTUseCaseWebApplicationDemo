@@ -56,7 +56,7 @@ export default {
 
 button {
   background-color: lightgray !important;
-  color: white;
+  color: black;
   border: none;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -69,4 +69,5 @@ input {
   padding: 0.5rem;
   background-color: snow !important;
 }
+
 </style>

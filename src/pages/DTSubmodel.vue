@@ -6,20 +6,26 @@
   <br>
   <div class="dt-definition">
     <div class="product__properties">
-      <p class="product_name">Name des Produkts: {{ productDetails.name }}</p>
+      <p class="headline">Reales Produkt:<br> {{ productDetails.name }}</p>
       <div v-for="(value, key) in filteredProperties" :key="key" class="property__item" :class="{ added: addedProperties.includes(key) }" @click="togglePropertyInJson(key, value)">
-        <p>{{ key }}: {{ value }}</p>
+        <p>{{ key }}:<br>{{ value }}</p>
       </div>
     </div>
     <div class="dt_submodel">
+      <p class="headline">Submodel</p>
       <input
           type="text"
           v-model="submodel.name"
           placeholder="Name des Submodels"
       />
       <div v-for="key in addedProperties" :key="key" class="property__item" @click="togglePropertyInJson(key, productDetails[key])">
-        <p>{{ key }}: {{ productDetails[key] }}</p>
+        <p>{{ key }}:<br>{{ productDetails[key] }}</p>
       </div>
+      <button @click="generateSubmodel">Generieren</button>
+    </div>
+    <div class="dt_submodel">
+      <p class="headline">Digital Twin</p>
+      <textarea v-model="jsonView" readonly></textarea>
     </div>
   </div>
   <button @click="nextStep" style="width: 120px; margin: 1rem">Weiter</button>
@@ -80,7 +86,13 @@ export default {
     },
     nextStep() {
       localStorage.setItem('submodel', JSON.stringify(this.submodel));
-      this.$router.push({ name: 'VideoPage',  params: { tag: "Storage" } });    }
+      this.$router.push({ name: 'VideoPage',  params: { tag: "Storage" } });
+    },
+    generateSubmodel() {
+      this.submodel.properties = this.addedProperties.map(key => ({ key, value: this.productDetails[key] }));
+      console.log('Submodel:', this.submodel);
+
+    }
   },
   watch: {
     addedProperties: {
@@ -108,21 +120,20 @@ export default {
   background-color: #68A089;
   width: 30%;
 }
-.product_name {
-  font-size: 16px;
+.headline {
+  font-size: 18px;
   font-weight: bold;
   color: white;
 }
 
 .property__item {
-  margin: 0.5rem;
   background-color: #f3f3f3;
   display: flex;
   flex-direction: row;
   gap: 1rem;
   cursor: pointer;
   padding: 0.5rem;
-  width: calc(100% - 1rem);
+  justify-content: center;
 }
 
 .property__item.added {
@@ -132,9 +143,11 @@ export default {
 
 .dt_submodel {
   background-color: #68A089;
-
   width: 30%;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 textarea {

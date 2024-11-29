@@ -7,7 +7,7 @@
           placeholder="Name der Eigenschaft"
           class="inputProperties"
       />
-      <p style="font-weight: bold; font-size: 20px">:</p>
+      <p style="font-weight: bold; font-size: 24px; color: white">:</p>
       <input
           type="text"
           v-model="property.value"
@@ -16,7 +16,7 @@
       />
       <button @click="removeProperty(index)" style="width: 40px">-</button>
     </div>
-    <button @click="addProperty" style="width: 40px; margin-left: 0px">+</button>
+    <button @click="addProperty" style="width: 40px; margin-left: 0px; margin-top: 10px">+</button>
   </div>
 </template>
 

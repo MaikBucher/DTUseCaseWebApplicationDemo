@@ -5,6 +5,7 @@
         <p>Als erstes kannst du dein bisheriges Produkt hier definieren. Denk daran das ein Produkt Eigenschaften hat wie Farbe, Material, Höhe, usw. Auch kannst du Bauteile anlegen, da diese auch mit aufgeführt werden sollen.</p>
       </div>
       <div class="product">
+        <p class="headline">Reales Produkt</p>
         <div class ="product__name">
           <input
               type="text"
@@ -58,6 +59,13 @@ export default {
   align-items: normal;
 }
 
+.headline {
+  font-size: 18px;
+  font-weight: bold;
+  margin: auto;
+  padding: 0.5rem;
+  color: white;
+}
 
 .innerBody {
   display: flex;
@@ -67,7 +75,7 @@ export default {
 
 .infoText {
   padding: 0.5rem;
-  width: 60%;
+  width: 50%;
   background-color: #68A089;
   color: #ffffff;
   font-size: 18px;
