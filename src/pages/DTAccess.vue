@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import {useSettings} from "@/composables/settings";
+
 export default {
   name: 'DTAccess',
   data() {
@@ -78,6 +80,15 @@ export default {
       return this.addedCalls.length === this.correctOrder.length;
     }
   },
+  setup() {
+    const settings = useSettings();
+
+    function nextStep(router) {
+      settings.currentStep = 6
+      router.push({name: 'SurveyPage'});
+    }
+    return {settings, nextStep};
+  },
   methods: {
     toggleCall(call) {
       const callIndex = this.addedCalls.map(c => c.name).indexOf(call.name);
@@ -87,19 +98,12 @@ export default {
         this.addedCalls.push(call);
       }
     },
-    nextStep() {
-      if (this.currentStep >= 3) {
-        this.currentStep = 0;
-      } else {
-        this.currentStep++;
-      }
-    },
     runSequence() {
       if (this.isRunButtonEnabled) {
         const addedCallNames = this.addedCalls.map(call => call.name);
         if (JSON.stringify(addedCallNames) === JSON.stringify(this.correctOrder)) {
           if (window.confirm("Die Calls wurden in der korrekten Reihenfolge gemacht. Möchtest du zum nächsten Thema?")) {
-            this.$router.push({ name: 'SurveyPage'});
+            this.nextStep(this.$router);
           }
         } else {
           alert("Die Calls sind nicht in der korrekten Reihenfolge. Versuche es nochmal.");

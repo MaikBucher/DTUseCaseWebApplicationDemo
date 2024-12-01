@@ -37,6 +37,7 @@
 
 <script>
 import {useCustomer} from "@/composables/customer";
+import {useSettings} from "@/composables/settings";
 
 export default {
   name: 'DTPublish',
@@ -77,9 +78,12 @@ export default {
   },
   setup() {
     const customer = useCustomer();
+    const settings = useSettings();
+
     function nextStep(router) {
       customer.isVisible = true;
-      router.push({name: 'VideoPage', params: {tag: "Access"}});
+      settings.currentVideo = 'Access';
+      router.push({name: 'VideoPage'});
     }
     return {customer, nextStep}
   },

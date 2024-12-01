@@ -44,6 +44,7 @@
 import {useSystem} from "@/composables/system";
 import {reactive} from "vue";
 import {useProduct} from "@/composables/product";
+import {useSettings} from "@/composables/settings";
 
 export default {
   name: 'DTDefinition',
@@ -58,6 +59,7 @@ export default {
   setup() {
     const system = useSystem();
     const product = useProduct();
+    const settings = useSettings();
     const submodel = reactive({
       name: '',
       properties: []
@@ -75,7 +77,8 @@ export default {
 
     function nextStep(router) {
       system.digitalTwinRegistry.push(system.digitalTwin);
-      router.push({name: 'VideoPage', params: {tag: "Storage"}});
+      settings.currentVideo = 'Storage';
+      router.push({name: 'VideoPage'});
     }
 
     function togglePropertyInProduct(key) {

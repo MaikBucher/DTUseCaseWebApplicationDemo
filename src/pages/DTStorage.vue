@@ -75,9 +75,12 @@ export default {
   },
   setup() {
     const settings = useSettings()
+
+
     function nextStep(router) {
       settings.wholeSystem = true;
-      router.push({name: 'VideoPage', params: {tag: "Publish"}});
+      settings.currentVideo = 'Publish';
+      router.push({name: 'VideoPage'});
     }
     return {settings, nextStep}
   },

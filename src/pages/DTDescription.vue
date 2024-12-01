@@ -25,12 +25,14 @@
 import PropertyList from "@/components/PropertyList.vue";
 import {useProduct} from "@/composables/product";
 import {reactive} from "vue";
+import {useSettings} from "@/composables/settings";
 
 export default {
   name: 'DTDescription',
   components: { PropertyList },
   setup() {
     const product = useProduct()
+    const settings = useSettings()
     const localProduct = reactive({
       name: '',
       properties: []
@@ -39,7 +41,8 @@ export default {
     function nextStep(router) {
       product.properties = localProduct.properties;
       product.name = localProduct.name;
-      router.push({ name: 'VideoPage',  params: { tag: "CatenaX" } });
+      settings.currentVideo = 'CatenaX'
+      router.push({ name: 'VideoPage'});
     }
 
     function updateProperties(updatedProperties) {

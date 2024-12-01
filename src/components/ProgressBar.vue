@@ -2,31 +2,31 @@
   <div>
     <ol class="ProgressBar">
       <!-- Progress bar steps -->
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 0, 'is-complete': currentStep > 0 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 0, 'is-complete': settings.currentStep > 0 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Einführung</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 1, 'is-complete': currentStep > 1 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 1, 'is-complete': settings.currentStep > 1 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Produkt erstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 2, 'is-complete': currentStep > 2 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 2, 'is-complete': settings.currentStep > 2 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">DT & Submodel</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 3, 'is-complete': currentStep > 3 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 3, 'is-complete': settings.currentStep > 3 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Speicherung</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 4, 'is-complete': currentStep > 4 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 4, 'is-complete': settings.currentStep > 4 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Bereitstellen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 5, 'is-complete': currentStep > 5 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 5, 'is-complete': settings.currentStep > 5 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Abrufen</span>
       </li>
-      <li class="ProgressBar-step" :class="{ 'is-current': currentStep === 6, 'is-complete': currentStep > 6 }">
+      <li class="ProgressBar-step" :class="{ 'is-current': settings.currentStep === 6, 'is-complete': settings.currentStep > 6 }">
         <div class="ProgressBar-icon"></div>
         <span class="ProgressBar-stepLabel">Fragebogen</span>
       </li>
@@ -35,24 +35,20 @@
 </template>
 
 <script>
+import {useSettings} from "@/composables/settings";
+
 export default {
-  name: 'ProgressBar',
   data() {
     return {
-      currentStep: 0,
     };
   },
-  methods: {
-    nextStep() {
-      if (this.currentStep >= 6) {
-        this.currentStep = 0;
-      } else {
-        this.currentStep++;
-      }
-    },
+  setup() {
+    const settings = useSettings();
+    return { settings };
   },
 };
 </script>
+
 
 <style lang="scss">
 $gray: #FFFFFF;

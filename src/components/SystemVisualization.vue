@@ -123,7 +123,7 @@ watch(
     filter: brightness(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.5);
     filter: brightness(1.5);
   }
   100% {
