@@ -1,14 +1,17 @@
 <template>
   <div class="infoText">
-    <p>Nun haben wir ein Digital Twin unseres Produkts. In Catena-X werden Submodels verwendet, um einen Use Case des Digital Twins darzustellen. Dabei kann auch festgelegt werden auf welche Eigenschaften zugegriffen werden kann.
-      Nun kannst du einen Submodel für deinen Digital Twin anlegen und Eigenschaften auswählen die dafür bereitgestellt werden sollen. Klicke hierfür links auf die Eigenschaft die du hinzufügen möchtest</p>
+    <p>Nun haben wir ein Digital Twin unseres Produkts. In Catena-X werden Submodels verwendet, um einen Use Case des
+      Digital Twins darzustellen. Dabei kann auch festgelegt werden auf welche Eigenschaften zugegriffen werden kann.
+      Nun kannst du einen Submodel für deinen Digital Twin anlegen und Eigenschaften auswählen die dafür bereitgestellt
+      werden sollen. Klicke hierfür links auf die Eigenschaft die du hinzufügen möchtest</p>
   </div>
   <br>
   <div class="dt-definition">
     <div class="product__properties">
-      <p class="headline">Reales Produkt:<br> {{ productDetails.name }}</p>
-      <div v-for="(value, key) in filteredProperties" :key="key" class="property__item" :class="{ added: addedProperties.includes(key) }" @click="togglePropertyInJson(key, value)">
-        <p>{{ key }}:<br>{{ value }}</p>
+      <p class="headline">Reales Produkt:<br> {{ product.name }}</p>
+      <div v-for="(value, key) in product.properties" :key="key" class="property__item"
+           :class="{ added: product.properties.find(item => item === value.name)}" @click="togglePropertyInProduct(key, value)">
+        <p>{{ value.name }}:<br>{{ value.value }}</p>
       </div>
     </div>
     <div class="dt_submodel">
@@ -18,89 +21,73 @@
           v-model="submodel.name"
           placeholder="Name des Submodels"
       />
-      <div v-for="key in addedProperties" :key="key" class="property__item" @click="togglePropertyInJson(key, productDetails[key])">
-        <p>{{ key }}:<br>{{ productDetails[key] }}</p>
+      <div v-for="(value, key) in submodel.properties" :key="key" class="property__item">
+        <p>{{ value.name }}:<br>{{ value.value }}</p>
       </div>
       <button @click="generateSubmodel">Generieren</button>
     </div>
     <div class="dt_submodel">
       <p class="headline">Digital Twin</p>
-      <textarea v-model="jsonView" readonly></textarea>
+      <div v-if="submodel.properties.length > 0 && system.digitalTwin !== undefined" class="generated-div">
+        <p>Digital Twin:</p>
+        <p>Name: {{ submodel.name }}</p>
+        <div v-for="(value, index) in submodel.properties" :key="index">
+          <p>{{ value.name }}: {{ value.value }}</p>
+        </div>
+      </div>
     </div>
   </div>
-  <button @click="nextStep" style="width: 120px; margin: 1rem">Weiter</button>
+  <button @click="nextStep(this.$router)" style="width: 120px; margin: 1rem">Weiter</button>
 </template>
 
 <script>
+import {useSystem} from "@/composables/system";
+import {reactive} from "vue";
+import {useProduct} from "@/composables/product";
+
 export default {
   name: 'DTDefinition',
   data() {
     return {
-      productDetails: null,
       jsonView: '',
-      addedProperties: [],
-      submodel: {
-        name: '',
-        properties: []
-      }
     };
   },
   created() {
-    const storedProduct = localStorage.getItem('productDetails');
-    if (storedProduct) {
-      this.productDetails = JSON.parse(storedProduct);
-      console.log('Product Details:', this.productDetails);
-    }
-    if (this.$route.query.productDetails) {
-      try {
-        this.productDetails = JSON.parse(this.$route.query.productDetails);
-      } catch (error) {
-        console.error('Error parsing productDetails:', error);
-      }
-    }
+    console.log('Product:', this.product);
   },
-  computed: {
-    filteredProperties() {
-      const result = {};
-      Object.entries(this.productDetails).forEach(([key, value]) => {
-        if (key !== 'name') result[key] = value;
-      });
-      return result;
-    }
-  },
-  methods: {
-    togglePropertyInJson(key) {
-      if (this.addedProperties.includes(key)) {
-        this.addedProperties = this.addedProperties.filter(item => item !== key);
-      } else {
-        this.addedProperties.push(key);
-      }
-      this.updateJsonView();
-    },
-    updateJsonView() {
-      const jsonData = { name: this.productDetails.name };
-      this.addedProperties.forEach((key) => {
-        jsonData[key] = this.productDetails[key];
-      });
-      this.jsonView = JSON.stringify(jsonData, null, 2);
-    },
-    nextStep() {
-      localStorage.setItem('submodel', JSON.stringify(this.submodel));
-      this.$router.push({ name: 'VideoPage',  params: { tag: "Storage" } });
-    },
-    generateSubmodel() {
-      this.submodel.properties = this.addedProperties.map(key => ({ key, value: this.productDetails[key] }));
-      console.log('Submodel:', this.submodel);
+  setup() {
+    const system = useSystem();
+    const product = useProduct();
+    const submodel = reactive({
+      name: '',
+      properties: []
+    });
 
+    function generateSubmodel() {
+      system.submodelServer = [];
+      system.submodelServer.push(submodel);
+      system.digitalTwin = {
+        name: 'Digital Twin',
+        submodels: system.submodelServer
+      };
+      console.log('Submodel:', submodel);
     }
-  },
-  watch: {
-    addedProperties: {
-      handler() {
-        this.updateJsonView();
-      },
-      deep: true,
-    },
+
+    function nextStep(router) {
+      system.digitalTwinRegistry.push(system.digitalTwin);
+      router.push({name: 'VideoPage', params: {tag: "Storage"}});
+    }
+
+    function togglePropertyInProduct(key) {
+      const index = submodel.properties.findIndex(item => item === product.properties[key]);
+      if (index === -1) {
+        submodel.properties.push(product.properties[key]);
+      } else {
+        submodel.properties.splice(index, 1);
+      }
+    }
+
+    return {system, generateSubmodel, nextStep, submodel, togglePropertyInProduct, product};
   },
 };
 </script>
@@ -112,18 +99,31 @@ export default {
   flex-direction: row;
   justify-content: center;
 }
+.infoText {
+  padding: 0.5rem;
+  width: 80%;
+  background-color: #68A089;
+  color: #ffffff;
+  font-size: 18px;
+  margin: auto;
+}
 
 .product__properties {
   display: flex;
   flex-direction: column;
+  justify-content: start;
   padding: 1rem;
+  gap: 1rem;
   background-color: #68A089;
   width: 30%;
 }
+
 .headline {
   font-size: 18px;
   font-weight: bold;
   color: white;
+  display: flex;
+  justify-content: start;
 }
 
 .property__item {
@@ -156,5 +156,11 @@ textarea {
   height: 100%;
   font-family: monospace;
   background-color: #ffffff;
+}
+
+.generated-div {
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid #ccc;
 }
 </style>

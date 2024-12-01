@@ -9,45 +9,45 @@
         <div class ="product__name">
           <input
               type="text"
-              v-model="productName"
+              v-model="localProduct.name"
               placeholder="Name des Produkts"
               style="margin: auto; padding: 0.5rem;"
           />
         </div>
         <br>
-        <PropertyList :properties="properties" @update-properties="updateProperties"/>
+        <PropertyList :properties="localProduct.properties" @update-properties="updateProperties"/>
       </div>
-      <button @click="nextStep" style="width: 120px; margin: auto">Weiter</button>
+      <button @click="nextStep(this.$router)" style="width: 120px; margin: auto">Weiter</button>
     </div>
   </div>
 </template>
 <script scoped>
 import PropertyList from "@/components/PropertyList.vue";
+import {useProduct} from "@/composables/product";
+import {reactive} from "vue";
 
 export default {
   name: 'DTDescription',
   components: { PropertyList },
-  data() {
-    return {
-      productName: '',
-      properties: [
-        { name: '', value: '' }
-      ]
-    };
-  },
-  methods: {
-    updateProperties(updatedProperties) {
-      this.properties = updatedProperties;
-    },
-    nextStep() {
-      const productDetails = {
-        name: this.productName
-      };
-      this.properties.forEach(prop => {
-        productDetails[prop.name] = prop.value;
-      });
-      localStorage.setItem('productDetails', JSON.stringify(productDetails));
-      this.$router.push({ name: 'VideoPage',  params: { tag: "CatenaX" } });    }
+  setup() {
+    const product = useProduct()
+    const localProduct = reactive({
+      name: '',
+      properties: []
+    })
+
+    function nextStep(router) {
+      product.properties = localProduct.properties;
+      product.name = localProduct.name;
+      router.push({ name: 'VideoPage',  params: { tag: "CatenaX" } });
+    }
+
+    function updateProperties(updatedProperties) {
+      console.log('Updated Properties: ', updatedProperties);
+      localProduct.properties = updatedProperties;
+    }
+
+    return { localProduct, nextStep, product, updateProperties }
   }
 };
 </script>

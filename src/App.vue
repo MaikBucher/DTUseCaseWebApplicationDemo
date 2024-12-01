@@ -5,14 +5,14 @@
     </div>
     <br>
     <router-view @next-step="nextProgressBarStep"></router-view>
-    <br>
+
     <VisualizationOverview v-if="showVisualization" />
   </div>
 </template>
 
 <script>
 import ProgressBar from "@/components/ProgressBar.vue";
-import VisualizationOverview from "@/components/Visualization.vue";
+import VisualizationOverview from "@/components/VisualizationOverview.vue";
 import router from './router';
 
 export default {

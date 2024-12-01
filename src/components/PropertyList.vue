@@ -6,6 +6,7 @@
           v-model="property.name"
           placeholder="Name der Eigenschaft"
           class="inputProperties"
+          @focusout="updateProperties"
       />
       <p style="font-weight: bold; font-size: 24px; color: white">:</p>
       <input
@@ -13,6 +14,7 @@
           v-model="property.value"
           placeholder="Wert der Eigenschaft"
           class="inputProperties"
+          @focusout="updateProperties"
       />
       <button @click="removeProperty(index)" style="width: 40px">-</button>
     </div>
@@ -45,16 +47,18 @@ export default {
   methods: {
     addProperty() {
       this.localProperties.push({ name: '', value: '' });
-      this.$emit('update-properties', this.localProperties);
+      this.updateProperties();
     },
     removeProperty(index) {
       this.localProperties.splice(index, 1);
-      this.$emit('update-properties', this.localProperties);
+      this.updateProperties();
+    },
+    updateProperties() {
+      this.$emit('update-properties', [...this.localProperties]);
     }
   }
 };
 </script>
-
 <style scoped>
 .product__properties {
   display: flex;

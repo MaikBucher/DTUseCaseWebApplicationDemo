@@ -61,7 +61,7 @@ $white: #DBF1FF;
 
 .ProgressBar {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   list-style: none;
   position: relative;
   display: flex;
@@ -87,7 +87,7 @@ $white: #DBF1FF;
   &:before,
   &:after {
     content: "";
-    height: 0.5em;
+    height: 0.3em;
     background-color: $gray;
     position: absolute;
 
@@ -115,8 +115,8 @@ $white: #DBF1FF;
 }
 
 .ProgressBar-icon {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   background-color: $gray;
   border-radius: 50%;
   max-width: 100%;
@@ -138,7 +138,7 @@ $white: #DBF1FF;
   text-transform: uppercase;
   color: $gray;
   position: absolute;
-  padding-top: 2.5em;
+  padding-top: 1.5em;
   width: 100%;
   transition: all .25s ease-out;
 

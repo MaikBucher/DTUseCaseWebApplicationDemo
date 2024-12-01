@@ -51,14 +51,15 @@
 </template>
 
 <script>
+import {useSettings} from "@/composables/settings";
+
 export default {
   name: "DTStorage",
   data() {
     return {
       sourceItems: [
         { id: 1, label: "Digital Twin" },
-        { id: 2, label: "Daten des DTs" },
-        { id: 3, label: "Submodel" },
+        { id: 2, label: "Submodel" },
       ],
       dropZones: [
         { id: 1, title: "Digital Twin Registry", items: [] },
@@ -67,10 +68,18 @@ export default {
       draggedItem: null,
       draggedFromZone: null,
       correctMapping: {
-        1: ["Digital Twin"], // Digital Twin Registry
-        2: ["Daten des DTs", "Submodel"], // Submodel-Server
+        1: ["Digital Twin"],
+        2: ["Submodel"]
       },
     };
+  },
+  setup() {
+    const settings = useSettings()
+    function nextStep(router) {
+      settings.wholeSystem = true;
+      router.push({name: 'VideoPage', params: {tag: "Publish"}});
+    }
+    return {settings, nextStep}
   },
   methods: {
     handleDragStart(item, zoneIndex = null) {
@@ -125,7 +134,7 @@ export default {
 
       if (allCorrect) {
         if (window.confirm("Alle Items wurden korrekt zugewiesen! Weiter zur nächsten Seite?")) {
-          this.$router.push({ name: 'VideoPage',  params: { tag: "Publish" } });
+          this.nextStep(this.$router);
         }
       } else {
         alert("Leider sind die Komponenten nicht richtig angeordnet. Versuche es nochmal");
