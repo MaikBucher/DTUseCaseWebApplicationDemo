@@ -43,6 +43,15 @@ export default {
   }
 }
 
+.infoText {
+  padding: 0.5rem;
+  width: 50%;
+  background-color: #68A089;
+  color: #ffffff;
+  font-size: 18px;
+  margin: auto;
+}
+
 .process_div {
   display: flex;
   flex-direction: row;

@@ -71,12 +71,14 @@ export default {
   padding: 1rem;
 }
 .infoText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
+  width: 50%;
+  background-color: #68A089;
+  color: #ffffff;
+  font-size: 18px;
+  margin: auto;
 }
+
 .button_next {
   background-color: lightgray;
   width: 120px;

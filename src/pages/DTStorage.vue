@@ -147,10 +147,11 @@ export default {
 
 .infoText {
   padding: 0.5rem;
-  width: 60%;
+  width: 50%;
   background-color: #68A089;
   color: #ffffff;
   font-size: 18px;
+  margin: auto;
 }
 
 .drag-drop-page {
