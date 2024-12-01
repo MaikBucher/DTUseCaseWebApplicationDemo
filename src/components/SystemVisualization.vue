@@ -1,18 +1,32 @@
 <script setup>
 import {useSystem} from "@/composables/system";
 import {useProduct} from "@/composables/product";
+import {ref, watch} from "vue";
 
 const system = useSystem()
 const product = useProduct()
+const highlightDigitalTwin = ref(false)
+
+watch(
+    () => system.submodelServer.length,
+    (newVal, oldVal) => {
+      if (newVal !== oldVal) {
+        highlightDigitalTwin.value = true;
+        setTimeout(() => {
+          highlightDigitalTwin.value = false;
+        }, 1000);
+      }
+    }
+);
 </script>
 <template>
-  <div v-if="product.name !== undefined" class="factory-section" :class="{ highlight: highlight === 'leftFactory' }">
+  <div v-if="product.name !== undefined" class="factory-section">
     <div class="factory-header">
       <p>Unser System</p>
     </div>
     <div class="factory-body">
         <div v-if="system.submodelServer.length > 0" class="icon-container">
-          <img :src="require('@/assets/digital_twin.png')" class="twin-icon"  />
+          <img :src="require('@/assets/digital_twin.png')" class="twin-icon"  :class="{ 'highlight': highlightDigitalTwin }" />
           <p>Digital Twin</p>
         </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="arrow">
@@ -23,7 +37,7 @@ const product = useProduct()
           <img :src="require('@/assets/server.png')" class="server-icon" />
           <p>Digital Twin Registry</p>
         </div>
-      <div class="spacer"></div>
+      <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
     </div>
     <div class="factory-body">
       <div v-if="system.submodelServer.length > 0" class="arrow_vertical" style="margin-right: 70px">
@@ -35,7 +49,7 @@ const product = useProduct()
         <div class="line_vertical"></div>
         <div class="arrowhead_down"></div>
       </div>
-      <div class="spacer"></div>
+      <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
     </div>
     <div class="factory-body">
       <div class="submodel">
@@ -50,7 +64,7 @@ const product = useProduct()
       </div>
       <div class="submodel">
         <div v-if="system.submodelServer.length > 0" class="icon-container">
-          <img :src="require('@/assets/submodel.png')" class="twin-icon"  />
+          <img :src="require('@/assets/submodel.png')" class="twin-icon"  :class="{ 'highlight': highlightDigitalTwin }" />
           <p>Submodel</p>
         </div>
       </div>
@@ -67,26 +81,20 @@ const product = useProduct()
       <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
     </div>
   </div>
+
   <div v-if="system.digitalTwinRegistry.length > 0" class="asset-server-container">
-    <!-- Linkes Div -->
     <div class="left-div">
       <div class="vertical-line">
-        <!-- Obere horizontale Linie -->
         <div class="horizontal-line top">
           <div class="arrow-head left"></div>
         </div>
-
-        <!-- Vertikale Linie -->
         <div class="center-line"></div>
-
-        <!-- Untere horizontale Linie -->
         <div class="horizontal-line bottom">
           <div class="arrow-head left"></div>
         </div>
       </div>
     </div>
 
-    <!-- Rechtes Div -->
     <div class="right-div">
       <div v-if="system.submodelServer.length > 0" class="icon-container" style="margin: 0">
         <img :src="require('@/assets/server.png')" class="twin-icon"  />
@@ -97,7 +105,6 @@ const product = useProduct()
         <div class="arrowhead_up"></div>
         <div class="line_vertical" style="height: 60px; margin: 0"></div>
       </div>
-      <!-- Verbindungslinien -->
       <div class="arrow-line">
         <div class="horizontal-line-right"></div>
       </div>
@@ -106,6 +113,25 @@ const product = useProduct()
 </template>
 
 <style scoped>
+.highlight {
+  animation: grow-shrink 1s ease-in-out;
+}
+
+@keyframes grow-shrink {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.2);
+    filter: brightness(1.5);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
 
 .factory-section {
   display: flex;
