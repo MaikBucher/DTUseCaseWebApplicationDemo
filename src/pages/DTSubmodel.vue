@@ -98,6 +98,7 @@ export default {
   gap: 1rem;
   flex-direction: row;
   justify-content: center;
+  align-items: stretch;
 }
 .infoText {
   padding: 0.5rem;
@@ -116,6 +117,7 @@ export default {
   gap: 1rem;
   background-color: #68A089;
   width: 30%;
+  min-height: 200px;
 }
 
 .headline {
@@ -123,7 +125,8 @@ export default {
   font-weight: bold;
   color: white;
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  margin: 0;
 }
 
 .property__item {
@@ -148,6 +151,8 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-height: 200px;
+  justify-content: flex-start; /* Neu: Inhalte am oberen Rand ausrichten */
 }
 
 textarea {

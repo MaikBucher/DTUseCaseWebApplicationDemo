@@ -44,6 +44,9 @@ export default {
       deep: true
     }
   },
+  created() {
+    this.localProperties.push({ name: '', value: '' });
+  },
   methods: {
     addProperty() {
       this.localProperties.push({ name: '', value: '' });

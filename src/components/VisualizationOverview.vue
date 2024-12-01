@@ -4,9 +4,11 @@ import DataspaceVisualization from "@/components/DataspaceVisualization.vue";
 import ClientVisualization from "@/components/ClientVisualization.vue";
 import {useSettings} from "@/composables/settings";
 import {useCustomer} from "@/composables/customer";
+import {useSystem} from "@/composables/system";
 
 const customer = useCustomer()
 const settings = useSettings()
+const system = useSystem()
 </script>
 <template>
   <br>
@@ -14,11 +16,11 @@ const settings = useSettings()
   <div class="diagram-container">
     <SystemVisualization/>
 
-    <div v-if="settings.wholeSystem" class="arrow">
-      <div class="arrowhead">
+    <div  class="arrow">
+      <div v-if="system.digitalTwinRegistry.length > 0" class="arrowhead">
         <span class="arrow-text">EDC</span>
       </div>
-      <div class="line"></div>
+      <div v-if="settings.wholeSystem" class="line"></div>
     </div>
     <DataspaceVisualization/>
     <div  v-if="settings.wholeSystem && customer.isVisible" class="arrow">
@@ -56,7 +58,7 @@ body, html {
 }
 
 .line {
-  width: 200px;
+  width: 100px;
   height: 2px;
   background-color: black;
 }
@@ -68,6 +70,7 @@ body, html {
   justify-content: center;
   width: 0;
   height: 0;
+  margin-left: 10px;
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
   border-left: 40px solid black;

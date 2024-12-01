@@ -23,6 +23,7 @@ const product = useProduct()
           <img :src="require('@/assets/server.png')" class="server-icon" />
           <p>Digital Twin Registry</p>
         </div>
+      <div class="spacer"></div>
     </div>
     <div class="factory-body">
       <div v-if="system.submodelServer.length > 0" class="arrow_vertical" style="margin-right: 70px">
@@ -34,6 +35,7 @@ const product = useProduct()
         <div class="line_vertical"></div>
         <div class="arrowhead_down"></div>
       </div>
+      <div class="spacer"></div>
     </div>
     <div class="factory-body">
       <div class="submodel">
@@ -61,6 +63,43 @@ const product = useProduct()
           <img :src="require('@/assets/server.png')" class="server-icon"  />
           <p>Submodel Registry</p>
         </div>
+      </div>
+      <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
+    </div>
+  </div>
+  <div v-if="system.digitalTwinRegistry.length > 0" class="asset-server-container">
+    <!-- Linkes Div -->
+    <div class="left-div">
+      <div class="vertical-line">
+        <!-- Obere horizontale Linie -->
+        <div class="horizontal-line top">
+          <div class="arrow-head left"></div>
+        </div>
+
+        <!-- Vertikale Linie -->
+        <div class="center-line"></div>
+
+        <!-- Untere horizontale Linie -->
+        <div class="horizontal-line bottom">
+          <div class="arrow-head left"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechtes Div -->
+    <div class="right-div">
+      <div v-if="system.submodelServer.length > 0" class="icon-container" style="margin: 0">
+        <img :src="require('@/assets/server.png')" class="twin-icon"  />
+        <p>Asset Server</p>
+      </div>
+      <div class="spacer" style="width: 0; height:10px"></div>
+      <div v-if="system.submodelServer.length > 0" class="arrow_vertical" style="align-self: center; margin: 0">
+        <div class="arrowhead_up"></div>
+        <div class="line_vertical" style="height: 60px; margin: 0"></div>
+      </div>
+      <!-- Verbindungslinien -->
+      <div class="arrow-line">
+        <div class="horizontal-line-right"></div>
       </div>
     </div>
   </div>
@@ -111,7 +150,7 @@ const product = useProduct()
 }
 
 .icon-container {
-  min-width: 120px;
+  min-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,4 +220,100 @@ const product = useProduct()
   text-align: center;
   transform: translate(10%, -100%);
 }
+
+
+/* Asset Server Container */
+
+.asset-server-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: -160px;
+}
+
+.left-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
+  position: relative;
+  margin-top: 60px;
+}
+
+.vertical-line {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  height: 200px;
+  width: 50px;
+}
+
+.center-line {
+  width: 2px;
+  background-color: black;
+  flex-grow: 1;
+}
+
+.horizontal-line {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 40px;
+  height: 2px;
+  background-color: black;
+}
+
+.horizontal-line.top {
+  position: absolute;
+  top: 0;
+}
+
+.horizontal-line.bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.arrow-head {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+}
+
+.arrow-head.left {
+  border-right: 10px solid black;
+  left: -12px;
+}
+
+.arrow-head.right {
+  border-left: 10px solid black;
+  right: -12px;
+}
+
+.right-div {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  position: relative;
+}
+
+.arrow-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120%;
+}
+
+.horizontal-line-right {
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  position: relative;
+}
+
+.arrow-head.right {
+  margin-top: -2px;
+}
+
 </style>
