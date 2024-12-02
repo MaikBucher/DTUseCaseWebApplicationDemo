@@ -7,7 +7,6 @@ const system = useSystem()
 const product = useProduct()
 const highlightDigitalTwin = ref(false)
 
-
 watch(
     () => system.submodelServer.length,
     (newVal, oldVal) => {
