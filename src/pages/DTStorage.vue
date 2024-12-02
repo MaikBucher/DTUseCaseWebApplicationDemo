@@ -82,6 +82,7 @@ export default {
       settings.currentVideo = 'Publish';
       router.push({name: 'VideoPage'});
     }
+
     return {settings, nextStep}
   },
   methods: {

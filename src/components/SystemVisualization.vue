@@ -7,6 +7,7 @@ const system = useSystem()
 const product = useProduct()
 const highlightDigitalTwin = ref(false)
 
+
 watch(
     () => system.submodelServer.length,
     (newVal, oldVal) => {
@@ -20,29 +21,41 @@ watch(
 );
 </script>
 <template>
+  <div v-if="product.name !== undefined" class="legend-section">
+    <p style="font-weight: bold; margin-bottom: 20px">Legende:</p>
+    <div class="legend-item">
+      <div class="line"></div>
+      <span>Datenaustausch</span>
+    </div>
+    <div class="legend-item">
+      <div class="line dashed"></div>
+      <span>Referenzen</span>
+    </div>
+  </div>
   <div v-if="product.name !== undefined" class="factory-section">
     <div class="factory-header">
       <p>Unser System</p>
     </div>
     <div class="factory-body">
-        <div v-if="system.submodelServer.length > 0" class="icon-container">
+        <div v-if="system.submodelServer.length > 0" class="icon-container" title="Im Digital Twin stehen die Verweise auf die einzelnen befüllten Submodels">
           <img :src="require('@/assets/digital_twin.png')" class="twin-icon"  :class="{ 'highlight': highlightDigitalTwin }" />
           <p>Digital Twin</p>
         </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="arrow">
-        <div class="line"></div>
+        <div class="line dashed"></div>
         <div class="arrowhead"></div>
       </div>
-        <div v-if="system.digitalTwinRegistry.length > 0"  class="icon-container">
+        <div v-if="system.digitalTwinRegistry.length > 0"  class="icon-container" title="In der Digital Twin Registry sind alle Digital Twins mit ihren Referenzen auf ihre Submodel abgespeichert">
           <img :src="require('@/assets/server.png')" class="server-icon" />
           <p>Digital Twin Registry</p>
         </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
     </div>
+
     <div class="factory-body">
-      <div v-if="system.submodelServer.length > 0" class="arrow_vertical" style="margin-right: 70px">
+      <div v-if="system.submodelServer.length > 0" class="arrow_vertical" style="margin-right: 70px" >
         <div class="arrowhead_up"></div>
-        <div class="line_vertical"></div>
+        <div class="line_vertical dashed"></div>
       </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
       <div  v-if="system.digitalTwinRegistry.length > 0" class="arrow_vertical" style="margin-right: 80px">
@@ -51,31 +64,32 @@ watch(
       </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
     </div>
+
     <div class="factory-body">
       <div class="submodel">
-        <div v-if="product.name !== undefined" class="icon-container">
+        <div v-if="product.name !== undefined" class="icon-container" title="Dein reales Produkt">
           <img :src="require('@/assets/box.png')" class="twin-icon"  />
           <p>{{product.name}}</p>
         </div>
       </div>
       <div v-if="system.submodelServer.length > 0" class="arrow">
-        <div class="line"></div>
+        <div class="line dashed"></div>
         <div class="arrowhead"></div>
       </div>
       <div class="submodel">
-        <div v-if="system.submodelServer.length > 0" class="icon-container">
+        <div v-if="system.submodelServer.length > 0" class="icon-container" title="Dein angelegtes Submodel für dein reales Produkt">
           <img :src="require('@/assets/submodel.png')" class="twin-icon"  :class="{ 'highlight': highlightDigitalTwin }" />
           <p>Submodel</p>
         </div>
       </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="arrow">
-        <div class="line"></div>
+        <div class="line dashed"></div>
         <div class="arrowhead"></div>
       </div>
       <div class="submodel">
-        <div v-if="system.digitalTwinRegistry.length > 0" class="icon-container">
+        <div v-if="system.digitalTwinRegistry.length > 0" class="icon-container" title="Im Submodel Server sind alle befüllten Submodelle abgespeichert. Die Refrenz im Digital Twin verweist auf das Submodel in diesem Server">
           <img :src="require('@/assets/server.png')" class="server-icon"  />
-          <p>Submodel Registry</p>
+          <p>Submodel Server</p>
         </div>
       </div>
       <div v-if="system.digitalTwinRegistry.length > 0" class="spacer"></div>
@@ -96,9 +110,9 @@ watch(
     </div>
 
     <div class="right-div">
-      <div v-if="system.submodelServer.length > 0" class="icon-container" style="margin: 0">
+      <div v-if="system.submodelServer.length > 0" class="icon-container" style="margin: 0" title="Im Catalog sind alle Asset gespeichert der der EDC kennt, mit den Contract und Access Defintions">
         <img :src="require('@/assets/server.png')" class="twin-icon"  />
-        <p>Asset Server</p>
+        <p>Catalog</p>
       </div>
       <div class="spacer" style="width: 0; height:10px"></div>
       <div v-if="system.submodelServer.length > 0" class="arrow_vertical" style="align-self: center; margin: 0">
@@ -132,6 +146,25 @@ watch(
   }
 }
 
+.legend-section {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  background-color: white;
+  height: fit-content;
+  border: 2px solid black;
+  padding: 10px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
 
 .factory-section {
   display: flex;
@@ -184,7 +217,7 @@ watch(
 }
 
 .spacer {
-  width: 150px;
+  width: 140px;
 }
 
 .arrow {
@@ -205,10 +238,21 @@ watch(
   height: 2px;
   background-color: black;
 }
+
+.line.dashed {
+  background-color: transparent;
+  border: 1px dashed black;
+}
+
 .line_vertical {
   width: 2px;
   height: 25px;
   background-color: black;
+}
+
+.line_vertical.dashed {
+  background-color: transparent;
+  border-left: 2px dashed black;
 }
 
 

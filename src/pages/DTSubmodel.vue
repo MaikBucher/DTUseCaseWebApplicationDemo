@@ -29,8 +29,8 @@
     <div class="dt_submodel">
       <p class="headline">Digital Twin</p>
       <div v-if="submodel.properties.length > 0 && system.digitalTwin !== undefined" class="generated-div">
-        <p>Digital Twin:</p>
-        <p>Name: {{ submodel.name }}</p>
+        <p style="font-weight: bold">Digital Twin:</p>
+        <p>Submodel-Name: {{ submodel.name }}</p>
         <div v-for="(value, index) in submodel.properties" :key="index">
           <p>{{ value.name }}: {{ value.value }}</p>
         </div>
