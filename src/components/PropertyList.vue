@@ -16,9 +16,9 @@
           class="inputProperties"
           @focusout="updateProperties"
       />
-      <button @click="removeProperty(index)" style="width: 40px">-</button>
+      <button @click="removeProperty(index)">Entfernen</button>
     </div>
-    <button @click="addProperty" style="width: 40px; margin-left: 0px; margin-top: 10px">+</button>
+    <button @click="addProperty" style="margin-left: 0px; margin-top: 10px">Eigenschaft hinzufügen</button>
   </div>
 </template>
 
